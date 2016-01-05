@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# this pack is valid for apps with a hello.txt in the root
+# this pack is valid for apps with a .ember-cli in the root
 if [ -f $1/.ember-cli ]; then
-  echo "Ember-CLI"
+  echo "Ember-CLI app detected"
   exit 0
 else
   exit 1
