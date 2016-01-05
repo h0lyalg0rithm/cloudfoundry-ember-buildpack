@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+### Configure environment
+
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+set -o nounset    # fail on unset variables
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
+
+build_dir=$1
+cache_dir=$2
+env_dir=$3
+
+
+#install node
+
+#install bower
+
+#install ember-cli
+
+#install nginx
+
+#configure nginx -> dir
+
+#build ember project
+
