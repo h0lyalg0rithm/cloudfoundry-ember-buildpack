@@ -32,7 +32,7 @@ cpu=$(get_cpu)
 node_version=$(read_json "$build_dir/package.json" ".engines.node")
 
 #install node
-install_nodejs "$node_version", "$node_dir", "$os", "$cpu"
+install_nodejs "$node_version" "$node_dir" "$os" "$cpu"
 
 #install bower
 
