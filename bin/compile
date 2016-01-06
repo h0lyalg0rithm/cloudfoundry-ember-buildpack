@@ -37,6 +37,9 @@ install_nodejs "$node_version" "$node_dir" "$os" "$cpu"
 #install npm
 install_npm "$node_version"
 
+#install node packages
+npm install
+
 #install bower
 npm install bower
 
@@ -48,4 +51,4 @@ npm install ember-cli
 #configure nginx -> dir
 
 #build ember project
-
+ember build
