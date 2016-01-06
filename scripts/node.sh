@@ -1,3 +1,5 @@
+# From heroku-buildpack-nodejs
+
 needs_resolution() {
   local semver=$1
   if ! [[ "$semver" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -28,3 +30,22 @@ install_nodejs() {
   chmod +x $dir/bin/*
 }
 
+#install_npm(version)
+install_npm() {
+  local version="$1"
+
+  if [ "$version" == "" ]; then
+    echo "Using default npm version: `npm --version`"
+  else
+    if needs_resolution "$version"; then
+      echo "Resolving npm version ${version} via semver.io..."
+      version=$(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=${version}" https://semver.herokuapp.com/npm/resolve)
+    fi
+    if [[ `npm --version` == "$version" ]]; then
+      echo "npm `npm --version` already installed with node"
+    else
+      echo "Downloading and installing npm $version (replacing version `npm --version`)..."
+      npm install --unsafe-perm --quiet -g npm@$version 2>&1 >/dev/null
+    fi
+  fi
+}
