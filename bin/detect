@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# this pack is valid for apps with a .ember-cli in the root
 if [ -f $1/.ember-cli ]; then
   echo "Ember-CLI app detected"
   exit 0
 else
+  echo "Ember-CLI app not detected"
   exit 1
 fi
