@@ -4,16 +4,36 @@
 ### Configure environment
 
 set -o errexit    # always exit on error
-set -o pipefail   # don't ignore exit codes when piping output
+set -o pipefail   # dont ignore exit codes when piping output
 set -o nounset    # fail on unset variables
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 build_dir=$1
 cache_dir=$2
 env_dir=$3
+bp_dir=$(cd $(dirname ${0:-}); cd ..; pwd)
 
+mkdir -p "$build_dir/.heroku/node/"
+cd $build_dir
+export PATH="$build_dir/.heroku/node/bin":$PATH
+
+node_dir="$build_dir/.heroku/node"
+
+# Scripts
+
+source $bp_dir/scripts/system.sh
+source $bp_dir/scripts/json.sh
+source $bp_dir/scripts/node.sh
+
+
+os=$(get_os)
+cpu=$(get_cpu)
+
+#parse node version from package.json
+local node_version=$(read_json "$BUILD_DIR/package.json" ".engines.node")
 
 #install node
+install_nodejs "$node_version", "$node_dir", "$os", "$cpu"
 
 #install bower
 
