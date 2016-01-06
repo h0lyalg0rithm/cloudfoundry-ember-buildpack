@@ -10,7 +10,6 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 build_dir=$1
 cache_dir=$2
-env_dir=$3
 bp_dir=$(cd $(dirname ${0:-}); cd ..; pwd)
 
 mkdir -p "$build_dir/.heroku/node/"
