@@ -1,3 +1,11 @@
+needs_resolution() {
+  local semver=$1
+  if ! [[ "$semver" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
 # install_nodejs(version, installation_dir, os, cpu)
 install_nodejs() {
   local version="$1"
@@ -18,3 +26,4 @@ install_nodejs() {
   mv /tmp/node-v$version-$os-$cpu/* $dir
   chmod +x $dir/bin/*
 }
+
