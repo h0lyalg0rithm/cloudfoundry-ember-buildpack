@@ -43,8 +43,12 @@ npm install
 #install bower
 npm install bower
 
+#Run bower
+bower install
+
 #install ember-cli
-npm install ember-cli
+PATH=$build_dir/node_modules/.bin:$build_dir/node_modules/ember-cli/node_modules/.bin:$PATH
+#npm install ember-cli
 
 #install nginx
 
