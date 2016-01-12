@@ -56,11 +56,9 @@ nginx_url=http://nginx.org/download/nginx-1.9.9.tar.gz
 
 curl $nginx_url -s -o - | tar xzvf - -C $build_dir/vendor
 
-cd nginx-1.9.9
+cd $build_dir/vendor/nginx-1.9.9
 
 ./configure && make && make install
-
-pwd
 
 #configure nginx -> dir
 cp $bp_dir/config/nginx.conf $build_dir
