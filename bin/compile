@@ -52,8 +52,15 @@ PATH=$build_dir/node_modules/.bin:$build_dir/node_modules/ember-cli/node_modules
 npm install -g ember
 
 #install nginx
+nginx_url=http://nginx.org/download/nginx-1.9.9.tar.gz
+
+curl $nginx_url -s -o - | tar xzvf - -C $build_dir/vendor
+
 
 #configure nginx -> dir
+cp $bp_dir/config/nginx.conf $build_dir
 
 #build ember project
 ember build
+
+exec $HOME/vendor/nginx/sbin/nginx -p $HOME -c $build_dir/nginx.conf
