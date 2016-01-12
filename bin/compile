@@ -58,7 +58,7 @@ curl $nginx_url -s -o - | tar xzvf - -C $build_dir/vendor
 
 cd $build_dir/vendor/nginx-1.9.9
 
-./configure && make && make install
+./configure --prefix=$HOME/vendor/nginx/sbin/nginx && make && make install
 
 #configure nginx -> dir
 cp $bp_dir/config/nginx.conf $build_dir
